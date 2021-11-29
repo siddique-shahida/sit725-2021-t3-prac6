@@ -1,3 +1,56 @@
-body{
-    margin: auto;
+/* This will apply the font to the entire page */
+* {
+    font-family: 'Raleway', sans-serif;
+}
+
+.header {
+    /* This will apply flexbox to the contents of our navigation bar */
+    display: flex;
+    /* will set the navbar background colour */
+    background-color: #edf0f1;
+    /* text colour */
+    color: #24252A;
+    /* This flexbox command will put all tthe space between the three components */
+    justify-content: space-between;
+    /* This will make all the items come around the center horizontal axis */
+    align-items: center;
+    /* padding is to give the items some breathing room */
+    /* 20px and 10% looked good */
+    padding: 20px 10%;
+}
+
+#nav_menu ul li a,
+#linkedin {
+    /* will make the font appear a littlwe bolder */
+    font-weight: 500;
+    /* em is a reltive unit that takes its font size from parent element */
+    font-size: 1em;
+    color: #24252A;
+    /* This will remove the ugly underlines on anchor tags */
+    text-decoration: none;
+    /* This will make the mouse pointer into a pointing hand */
+    cursor: pointer;
+}
+
+#nav_menu ul li {
+    /* This will amke the nav elements horizontally distributed */
+    display: inline-block;
+    padding: 0 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: solid 0.01em;
+    border-radius: 2em;
+    /* transition will control the speed of animation */
+    transition: all 0.5s;
+}
+
+/* this will happen when we take the mouse corsor over the button */
+button:hover,
+#linkedin:hover {
+    border: none;
+    font-weight: 700;
+    color: #edf0f1 !important;
+    background-color: rgb(0, 134, 169);
 }
