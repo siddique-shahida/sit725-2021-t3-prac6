@@ -1,0 +1,19 @@
+{
+  "name": "sit725-2021-t3-prac2",
+  "version": "1.0.0",
+  "description": "This is SIT725 Practical 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddique-shahida/sit725-2021-t3-prac2.git"
+  },
+  "author": "Shahida Siddique",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siddique-shahida/sit725-2021-t3-prac2/issues"
+  },
+  "homepage": "https://github.com/siddique-shahida/sit725-2021-t3-prac2#readme"
+}
