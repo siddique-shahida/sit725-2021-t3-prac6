@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boilerplate Page</title>
+    <title>Boilerplate with Database Page</title>
 
     <!-- google fonts raleway -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <!-- css link -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- materialize link -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 </head>
 
 <body>
@@ -20,8 +28,8 @@
     <!-- header is just like a div with a different name. It is mainly for convention as this header will probably be repeated in every page and will be at the top -->
     <header class="header">
         <!-- h1 is the biggest header class and conventionally there is only one h1 -->
-        <h1 id="name">Shahida Siddique</h1>
-        <nav id="nav_menu">
+        <h1>Shahida Siddique</h1>
+        <nav class="nav_bar">
             <!-- ul is an unordered list. ordered list will show numbers and we don't want that -->
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -31,11 +39,36 @@
             </ul>
         </nav>
 
-        <Button><a href="#" id="linkedin">LinkedIn</a></Button>
+        <a href="#" id="linkedin">LinkedIn</a>
     </header>
 
-    <h2>Hello! My name is Shahida</h2>
-    <p>This is my first boilerplate code for SIT725 Software Engineering</p>
+    <div class="aboutMe">
+        <h2>Hello! My name is Shahida</h2>
+        <p>This is my first boilerplate code for SIT725 Software Engineering.</p>
+        <p>I have now added database functionality to this.</p>
+    </div>
+    <br>
 
+    <a href="registerForm.html" id="toRegister">Register Yourself!</a>
+    <br><br>
+
+    <div class="cards">
+        <div class="row" id="cardSection">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://www.petmd.com/sites/default/files/puppy-laying-down-outside.jpg">
+                        <span class="card-title">Very Cute Puppy 1</span>
+                    </div>
+                    <div class="card-content">
+                        <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/script.js"></script>
 </body>
+
 </html>
