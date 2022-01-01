@@ -1,74 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boilerplate with Database Page</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIT725 Practical 5</title>
+  <link rel="stylesheet" href="css/styles.css">
 
-    <!-- google fonts raleway -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-    <!-- css link -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <!-- materialize link -->
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
 <body>
-
-    <!-- header is just like a div with a different name. It is mainly for convention as this header will probably be repeated in every page and will be at the top -->
-    <header class="header">
-        <!-- h1 is the biggest header class and conventionally there is only one h1 -->
-        <h1>Shahida Siddique</h1>
-        <nav class="nav_bar">
-            <!-- ul is an unordered list. ordered list will show numbers and we don't want that -->
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-
-        <a href="#" id="linkedin">LinkedIn</a>
-    </header>
-
-    <div class="aboutMe">
-        <h2>Hello! My name is Shahida</h2>
-        <p>This is my first boilerplate code for SIT725 Software Engineering.</p>
-        <p>I have now added database functionality to this.</p>
-    </div>
-    <br>
-
-    <a href="registerForm.html" id="toRegister">Register Yourself!</a>
-    <br><br>
-
-    <div class="cards">
-        <div class="row" id="cardSection">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="https://www.petmd.com/sites/default/files/puppy-laying-down-outside.jpg">
-                        <span class="card-title">Very Cute Puppy 1</span>
-                    </div>
-                    <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-            </div>
+    <nav>
+        <div class="nav-wrapper navbar-size">
+          <a href="#" class="brand-logo"><img class="user-image-size" src="images/user-image.png" /></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a target="_blank" href="https://www.linkedin.com/in/shahida-siddique-b156421b5/">My LinkedIn</a></li>
+          </ul>
         </div>
-    </div>
-    <script type="text/javascript" src="scripts/script.js"></script>
+    </nav>
+    <main class="main-body">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 center-align">
+            <h1 id="heading">Hello Everyone my name is Shahida Siddique and this is my week 5 practical</h1>
+          </div>
+          <div class="col s12 center-align">
+            <img class="materialboxed materialboxed-image" src="images/livedemo.png">
+          </div>
+          <div class="col s12 center-align">
+            <a class="waves-effect waves-light btn click-me-button modal-trigger" id="clickMeButton" data-target="modal1"><i class="material-icons left">auto_fix_high</i>Click Me</a>
+          </div>
+        </div>
+        <div class="row" id="card-section">
+          <div class="col s4 center-align">
+            <div class="card medium">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="images/kitten.jpg">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Cute Kitten<i class="material-icons right">more_vert</i></span>
+                <p><a href="#">About kitten</a></p>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Very Cute Kitten<i class="material-icons right">close</i></span>
+                <p class="card-text">Hello Everyone!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Modal Structure -->
+      <div id="modal1" class="modal modal-fixed-footer">
+        <div class="row modal-content">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="title" type="text" class="validate">
+                <label for="title">Title</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="image" type="text" class="validate">
+                <label for="image">Image</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="link" type="text" class="validate">
+                <label for="link">Link</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="description" type="text" class="validate">
+                <label for="description">Description</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 center-align">
+                <a class="waves-effect waves-light btn" id="formSubmit">submit</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="env.js"></script>
 </body>
-
 </html>

@@ -1,127 +1,139 @@
-var express = require("express");
-var app = express();
-// variable users that is just an array
-var users = [];
+// require('dotenv').config()
+// var express = require("express")
+// var cors = require("cors")
+// var app = express()
 
-// Adding mongoDB 
-const MongoClient = require('mongodb').MongoClient;
+// let dbConnect = require("./dbConnect");
 
-// Connecting to the mongoDB
-const uri = "mongodb+srv://sit725-2021:1234567890@sit-725-2021-week4.4e6ld.mongodb.net/sit725-t2-week4?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-    useNewUrlParser: true
+// // const MongoClient = require('mongodb').MongoClient;
+// // let projectCollection;
+
+
+// // Database Connectivity
+// // const uri = "mongodb+srv://sit725-2021:1234567890@sit-725-2021-week4.4e6ld.mongodb.net/sit725-t2-week4?retryWrites=true&w=majority"
+// // const client = new MongoClient(uri,{ useNewUrlParser: true })
+// app.use(express.static(__dirname+'/public'))
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cors())
+
+// // const createColllection = (collectionName) => {
+// //     client.connect((err,db) => {
+// //         projectCollection = client.db().collection(collectionName);
+// //         if(!err) {
+// //             console.log('MongoDB Connected')
+// //         }
+// //         else {
+// //             console.log("DB Error: ", err);
+// //             process.exit(1);
+// //         }
+// //     })
+// // }
+
+// const cardList = [
+//     {
+//         title: "Kitten 2",
+//         image: "images/kitten-2.jpg",
+//         link: "About Kitten 2",
+//         description: "Demo desciption about kitten 2"
+//     },
+//     {
+//         title: "Kitten 3",
+//         image: "images/kitten-3.jpg",
+//         link: "About Kitten 3",
+//         description: "Demo desciption about kitten 3"
+//     }
+// ]
+
+// const insertProjects = (project,callback) => {
+//     projectCollection.insert(project,callback);
+// }
+
+// const getProjects = (callback) => {
+//     projectCollection.find({}).toArray(callback);
+// }
+
+// // app.get('/api/projects',(req,res) => {
+// //     getProjects((err,result) => {
+// //         if(err) {
+// //             res.json({statusCode: 400, message: err})
+// //         }
+// //         else {
+// //             res.json({statusCode: 200, message:"Success", data: result})
+// //         }
+// //     })
+// //     //res.json({statusCode: 200, data: cardList, message:"Success"})
+// // })
+
+// // app.post('/api/projects',(req,res) => {
+// //     console.log("New Project added", req.body)
+// //     var newProject = req.body;
+// //     //cardList.push(newProject);
+// //     insertProjects(newProject,(err,result) => {
+// //         if(err) {
+// //             res.json({statusCode: 400, message: err})
+// //         }
+// //         else {
+// //             res.json({statusCode: 200, message:"Project Successfully added", data: result})
+// //         }
+// //     })
+// //     //res.json({statusCode: 200, message:"Project Successfully added", data: newProject})
+// // })
+
+// var port = process.env.port || 3000;
+
+// app.listen(port,()=>{
+//     console.log("App listening to: "+port);
+//     createColllection("pets")
+// })
+let express = require("express");
+let app = express();
+let dbConnect = require("./dbConnect");
+
+//dbConnect.dbConnect()
+//var app = require('express')();
+let http = require('http').createServer(app);
+let io = require('socket.io')(http);
+//const MongoClient = require('mongodb').MongoClient;
+
+// routes
+let projectsRoute = require('./routes/projects')
+
+
+var port = process.env.PORT || 8080;
+app.use(express.json());
+app.use(express.static(__dirname + '/public'));
+app.use('/api/projects',projectsRoute)
+
+
+app.get("/test", function (request, response) {
+  var user_name = request.query.user_name;
+  response.end("Hello " + user_name + "!");
 });
 
-// Here we tell the program that the data comming in give it to me in json form
-app.use(express.json());
-app.use(express.urlencoded({
-    extended: false
-}));
-
-// This tells the application that I will put all my static pages in the public folder
-app.use(express.static(__dirname + '/public'));
-
-
-// This function takes the collection (in mongodb things are objects)
-const createCollection = (collectionName) => {
-    client.connect((err, db) => {
-        projectCollection = client.db().collection(collectionName);
-        if (!err) {
-            console.log('MongoDB Connected')
-        } else {
-            console.log("DB Error: ", err);
-            process.exit(1);
-        }
-    })
-}
-
-
-
-// Here we are basically telling node that if you cant find the port switch to port 3000
-var port = process.env.port || 3000;
-
-const subNumbers = (number1, number2) => {
-    // parse int will make the string input integer
-    var num1 = parseInt(number1);
-    var num2 = parseInt(number2);
-    // This part is so that is user does not send a number
-    if (isNaN(num1) || isNaN(num2)) {
-        return false;
-    } else {
-        var result = num1 - num2;
-        return result;
-    }
-}
-
-app.get("/subTwoNumbers", (req, res) => {
-    // request is telling what we need from the user
-    var number1 = req.query.number1;
-    var number2 = req.query.number2;
-    var result = subNumbers(number1, number2)
-
-    if (result == false) {
-        // Since we dont have any data it'll be null
-        res.json({
-            statusCode: 200,
-            data: null,
-            message: "Fail"
-        })
-    } else {
-        // response is what the user will get
-        res.json({
-            statusCode: 200,
-            data: result,
-            message: "Success"
-        })
-    }
-
+app.get('/addTwoNumbers/:firstNumber/:secondNumber', function(req,res,next){
+  var firstNumber = parseInt(req.params.firstNumber) 
+  var secondNumber = parseInt(req.params.secondNumber)
+  var result = firstNumber + secondNumber || null
+  if(result == null) {
+    res.json({result: result, statusCode: 400}).status(400)
+  }
+  else { res.json({result: result, statusCode: 200}).status(200) } 
 })
 
-// This is a post api. This will add users to the above created users array
-app.post("/user/create", (req, res) => {
-    let userData = {};
-    userData.name = req.body.name;
-    userData.age = req.body.age;
-    users.push(userData);
-    res.json({
-        statusCode: 200,
-        data: result,
-        message: "User Created"
-    });
-})
+//socket test
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+  setInterval(()=>{
+    socket.emit('number', parseInt(Math.random()*10));
+  }, 1000);
 
-// This get api will take queries
-// It will send the user array to the user
-app.get("/user", (req, res) => {
+});
 
-    var age = parseInt(req.query.age);
-    var userFormatted = [];
 
-    if (isNaN(age)) {
-        res.json({
-            statusCode: 200,
-            data: result,
-            message: "User Created"
-        })
-    } else {
-        // With this we can actually query users with age as a filter
-        for (var i = 0; i < users.length; i++) {
-            if (age < users[i].age) {
-                userFormatted.push(users[i]);
-            }
-        }
-        res.json({
-            statusCode: 200,
-            data: result,
-            message: "Success"
-        });
-    }
-
-})
-
-// This is a express function
-app.listen(port, () => {
-    // This will show up on the console and tell us which port we are running on
-    console.log("Boilerplate form started on: ", port)
-    createCollection("pets");  
-})
+http.listen(port,()=>{
+  console.log("Listening on port ", port);
+});
